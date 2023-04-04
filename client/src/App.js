@@ -6,23 +6,27 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { PokemonProvider } from './contexts/pokemon/PokemonContext';
+import { AlertProvier } from './contexts/alert/AlertContext';
+
 
 function App() {
   return (
     <PokemonProvider>
-      <Router>
-        <div className='flex flex-col justify-between h-screen'>
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path='/' element={<Home />}/>
-              <Route path='/about' element={<About />}/>
-              <Route path='/*' element={<NotFound />}/>
-            </Routes>
-          </main>
-        <Footer />
-        </div>
-      </Router>
+      <AlertProvier>
+        <Router>
+          <div className='flex flex-col justify-between h-screen'>
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path='/' element={<Home />}/>
+                <Route path='/about' element={<About />}/>
+                <Route path='/*' element={<NotFound />}/>
+              </Routes>
+            </main>
+          <Footer />
+          </div>
+        </Router>
+      </AlertProvier>
     </PokemonProvider>
   );
 }
