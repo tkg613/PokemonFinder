@@ -8,7 +8,7 @@ const PokemonItem = ({pokemon, index}) => {
   }
 
   return (
-    <div className='card shadow-md bg-base-100 compact side ml-8'>
+    <div className='card shadow-md bg-base-100 compact side ml-8 mr-8'>
       
       <div className='card-body flex-row space-x-4'>
 

@@ -1,23 +1,15 @@
 import React from 'react'
-import {useEffect, useState} from 'react'
+import {useEffect, useContext} from 'react'
 import PokemonItem from './PokemonItem'
+import PokemonContext from '../../contexts/pokemon/PokemonContext'
 
 const PokemonList = () => {
 
-  const API_URL = 'https://pokeapi.co/api/v2/pokemon/'
-
-  const [pokemon, setPokemon] = useState([])
+  const {pokemon, fetchPokemon} = useContext(PokemonContext)
 
   useEffect(() => {
     fetchPokemon()
   }, [])
-
-  const fetchPokemon = async function(){
-    const response = await fetch(`${API_URL}?limit=151`)
-    const data = await response.json()
-    console.log(data)
-    setPokemon(data)
-  }
 
   if (pokemon.results !== undefined){
     return (
@@ -30,7 +22,7 @@ const PokemonList = () => {
   } else {
     return <h3>Nothing found...</h3>
   }
-
+  // Floating to-top button
   
 }
 
