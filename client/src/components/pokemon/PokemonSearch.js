@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState, useContext } from 'react'
 import PokemonContext from '../../contexts/pokemon/PokemonContext'
+import AlertContext from '../../contexts/alert/AlertContext'
 
 const PokemonSearch = () => {
 
   const [text, setText] = useState('')
 
   const {pokemon, fetchPokemon, clearPokemon} = useContext(PokemonContext)
+  const {setAlert} = useContext(AlertContext)
 
   const handleChange = function(event){
     setText(event.target.value)
@@ -19,7 +21,7 @@ const PokemonSearch = () => {
   const handleSubmit = function(event){
     event.preventDefault()
     if (text === '') {
-      alert('Please enter something.')
+      setAlert('Please enter something...', 'error')
     } else {
       fetchPokemon(text)
       setText('')
