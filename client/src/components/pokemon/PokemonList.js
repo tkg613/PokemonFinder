@@ -22,8 +22,8 @@ const PokemonList = () => {
   if (pokemon.results !== undefined){
     return (
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-        {pokemon.results.map((p) => 
-          <h3>{p.name}</h3>
+        {pokemon.results.map((p, index) => 
+          <PokemonItem key={index} index={index} pokemon={p}/>
         )}
       </div>
     )
