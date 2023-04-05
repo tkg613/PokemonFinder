@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import Alert from './components/layout/Alert';
 import { PokemonProvider } from './contexts/pokemon/PokemonContext';
 import { AlertProvier } from './contexts/alert/AlertContext';
+import Pokemon from './pages/Pokemon';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Routes>
                 <Route path='/' element={<Home />}/>
                 <Route path='/about' element={<About />}/>
+                <Route path='/pokemon/:name' element={<Pokemon />} />
                 <Route path='/*' element={<NotFound />}/>
               </Routes>
             </main>

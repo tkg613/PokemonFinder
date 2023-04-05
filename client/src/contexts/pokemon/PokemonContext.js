@@ -8,7 +8,15 @@ const API_URL = 'https://pokeapi.co/api/v2/pokemon/'
 export const PokemonProvider = ({children}) => {
 
   const initialState = {
-    pokemon: []
+    pokemon: [],
+    // Pokemon object for a specific pokemon
+    singlePokemon: {
+      name: '',
+      types: [],
+      height: '',
+      weight: '',
+      sprites: []
+    }
   }
 
   const [state, dispatch] = useReducer(pokemonReducer, initialState)
@@ -19,18 +27,31 @@ export const PokemonProvider = ({children}) => {
     const response = await fetch(`${API_URL}?limit=151`)
     const data = await response.json()
 
-    // console.log('data:', data)
-
     // Filter data based on search
     const searchResult = data.results.filter(item => item.name.includes(text.toLowerCase()))
-
-    // console.log('result:', searchResult)
     
     // Dispatch takes action object as argument
     dispatch({
       type: 'GET_POKEMON',
       payload: searchResult
     })
+  }
+
+  // Get info of a specific pokemon selected by the user
+  const fetchSinglePokemon = async function(name){
+
+    const response = await fetch(`${API_URL}${name}`)
+
+    if (response.status === 404) {
+      window.location = '/notfound'
+    } else {
+      const data = await response.json()
+
+      dispatch({
+        type: 'GET_SINGLE_POKEMON',
+        payload: data
+      })
+    }
   }
 
   // Clear list of pokemon from search screen once user clicks Clear button
@@ -45,7 +66,9 @@ export const PokemonProvider = ({children}) => {
     <PokemonContext.Provider
       value={{
         pokemon: state.pokemon,
+        singlePokemon: state.singlePokemon,
         fetchPokemon,
+        fetchSinglePokemon,
         clearPokemon
       }}
     >

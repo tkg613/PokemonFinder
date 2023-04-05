@@ -5,6 +5,11 @@ const pokemonReducer = function(state, action){
         ...state,
         pokemon: action.payload
       }
+    case 'GET_SINGLE_POKEMON':
+      return {
+        ...state,
+        singlePokemon: action.payload
+      }
     case 'CLEAR_POKEMON':
       return {
         ...state,
