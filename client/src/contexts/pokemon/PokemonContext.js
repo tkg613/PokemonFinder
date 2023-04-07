@@ -15,7 +15,8 @@ export const PokemonProvider = ({children}) => {
       types: [],
       height: '',
       weight: '',
-      sprites: []
+      sprites: [],
+      moves: []
     }
   }
 
